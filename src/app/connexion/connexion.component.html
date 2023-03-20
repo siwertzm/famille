@@ -1,0 +1,28 @@
+<div style="margin: auto; width: 25%">
+    <div>
+        <h1 class="mt-5 text-center"><u>Connexion</u></h1>
+    </div>
+    <div class="mt-5 card p-4 z-depth-3">
+        <form #register="ngForm" (ngSubmit)="connexion(register.value)">
+            <div class="md-form">
+                <label class="form-label" for="loginform">Login</label>
+                <input type="text" ngModel="" name="login" class="form-control" id="loginform">
+            </div>
+            <div class="md-form">
+                <label class="form-label" for="passwordform">Password</label>
+                <input type="password" ngModel="" name="mdp" class="form-control" id="passwordform">
+            </div>
+            <div class="row">
+                <div class="col-sm-6 text-center">
+                    <button type="submit" class="test btn waves-effect">Connexion</button>
+                </div>
+                <div class="col-sm-6 text-center">
+                    <button type="button" onclick="location.href='inscription'"
+                        class="btn btn-outline waves-effect">Sign-in</button>
+                </div>
+            </div>
+            <br>
+            <div class="text-center text-danger">{{msg}}</div>
+        </form>
+    </div>
+</div>

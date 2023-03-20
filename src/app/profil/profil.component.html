@@ -1,0 +1,150 @@
+<div style="margin: auto; width: 75%">
+    <div class="card display-flex mt-5 absolue">
+        <div class="row">
+            <div class="col-sm">
+                <img class="m-2 profil" src="https://gem.ec-nantes.fr/wp-content/uploads/2019/01/profil-vide.png">
+            </div>
+            <div class="col-sm">
+                <h2 class="mt-2"><strong>{{authService.getUserConnected().nom}}</strong> {{authService.getUserConnected().prenom}} </h2>
+                <br>
+                <h5><strong>Login :</strong></h5>
+                <h5>{{authService.getUserConnected().login}}</h5>
+                <h5><strong>Mot de passe :</strong></h5>
+                <h5>{{authService.getUserConnected().mdp}}</h5>
+            </div>
+            <div class="col-sm text-center mt-5">
+                <button type="button" class="test btn waves-effect" id="modify" data-toggle="modal" data-target="#exampleModal"
+                data-whatever="@getbootstrap"> Modifier le profil</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="margin: auto; width: 75%">
+    <div class="card display-flex mt-5 absolue">
+        <div class="row">
+            <div class="col-sm">
+                <h2 class="mt-2 ml-2"><strong>Expérience professionel :</strong></h2>
+            </div>
+            <div class="col-sm">
+                <button type="button" class="test btn waves-effect" id="add" data-toggle="modal" data-target="#newexp" 
+                data-whatever="@getbootstrap"> Ajouter une expérience</button>
+            </div>
+        </div>
+        <div style="margin: auto; width: 90%" *ngFor="let j of job;">
+            <div class="card display-flex mt-3 absolue">
+                <div class="row">
+                    <div class="col-sm m-2">
+                        <h2 class="mt-2"><strong>Travail :</strong> {{j.jobTitle}} </h2>
+                        <h5>{{j.boite}}</h5>
+                        <h5>{{j.jobDesc}}</h5>
+                        <h5>{{j.temps}} {{j.unite}}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true" #myModal>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modifier le profil</h5>
+                </div>
+                <div class="modal-body">
+                    <form  #registerForm="ngForm" (ngSubmit)="updateUser(registerForm.value)">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="md-form">
+                                    <label for="nomform" class="form-label">Nouveau nom :</label>
+                                    <input type="text" ngModel="" name="nom" class="form-control" id="nomform">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="md-form">
+                                    <label for="prenomform" class="form-label">Nouveau prénom :</label>
+                                    <input type="text" ngModel="" name="prenom" class="form-control" id="prenomform">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="md-form">
+                                    <label for="loginform" class="form-label">Nouveau login :</label>
+                                    <input type="text" ngModel="" name="login" class="form-control" id="loginform">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="md-form">
+                                    <label for="mdpform" class="form-label">Nouveau mot de passe :</label>
+                                    <input type="password" ngModel="" name="mdp" class="form-control" id="mdpform">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <div class="center">
+                            <button type="button" (click)="reload()" class="btn" data-dismiss="modal">Fermer</button>
+                            <button type="submit" class="btn">Confirmer</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+<div class="modal fade" id="newexp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true" #myModal>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modifier le profil</h5>
+            </div>
+            <div class="modal-body">
+                <form  #registerForm="ngForm" (ngSubmit)="addJob(registerForm.value)">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="md-form">
+                                <label for="jobform" class="form-label">Titre du poste :</label>
+                                <input type="text" ngModel="" name="jobTitle" class="form-control" id="jobform">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="md-form">
+                                <label for="descform" class="form-label">Description du poste :</label>
+                                <input type="text" ngModel="" name="jobDesc" class="form-control" id="descform">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="md-form">
+                                <label for="boiteform" class="form-label">Nom de la compagnie :</label>
+                                <input type="text" ngModel="" name="boite" class="form-control" id="boiteform">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="md-form">
+                                <label for="tempsform" class="form-label">Temps d'activité :</label>
+                                <input type="int" ngModel="" name="temps" class="form-control" id="tempsform">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="center">
+                        <button type="button" (click)="reload()" class="btn" data-dismiss="modal">Fermer</button>
+                        <button type="submit" class="btn">Confirmer</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
